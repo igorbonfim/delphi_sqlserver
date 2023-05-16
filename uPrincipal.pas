@@ -8,7 +8,7 @@ uses
   Vcl.ComCtrls, ZDbcIntfs, cAtualizacaoBancoDeDados, RLReport, Data.DB,
   ZAbstractRODataset, ZAbstractDataset, ZDataset, Vcl.StdCtrls, Vcl.ExtCtrls,
   VclTee.TeeGDIPlus, VCLTee.TeEngine, VCLTee.TeeProcs, VCLTee.Chart,
-  VCLTee.DBChart, VCLTee.Series;
+  VCLTee.DBChart, VCLTee.Series, cFuncao;
 
 type
   TfrmPrincipal = class(TForm)
@@ -82,8 +82,6 @@ type
     { Private declarations }
     TeclaEnter : TMREnter;
     procedure AtualizacaoBancoDados(aForm: TfrmAtualizaDB);
-    procedure CriarForm(aNomeForm: TFormClass);
-    procedure CriarRelatorio(aForm: TFormClass);
     procedure AtualizarDashboard;
   public
     { Public declarations }
@@ -104,27 +102,27 @@ uses uCadCategoria, uCadCliente, cCadProduto, uCadProduto, uProVenda, uRelCatego
 
 procedure TfrmPrincipal.CATEGORIA1Click(Sender: TObject);
 begin
-  CriarForm(TfrmCadCategoria);
+  TFuncao.CriarForm(TfrmCadCategoria, oUsuarioLogado, dtmPrincipal.ConexaoDB);
 end;
 
 procedure TfrmPrincipal.Categoria2Click(Sender: TObject);
 begin
-  CriarRelatorio(TfrmRelCategoria);
+  TFuncao.CriarRelatorio(TfrmRelCategoria, oUsuarioLogado, dtmPrincipal.ConexaoDB);
 end;
 
 procedure TfrmPrincipal.CLIENTE1Click(Sender: TObject);
 begin
-  CriarForm(TfrmCadCliente);
+  TFuncao.CriarForm(TfrmCadCliente, oUsuarioLogado, dtmPrincipal.ConexaoDB);
 end;
 
 procedure TfrmPrincipal.CLIENTE2Click(Sender: TObject);
 begin
-  CriarRelatorio(TfrmRelCadCliente);
+  TFuncao.CriarRelatorio(TfrmRelCadCliente, oUsuarioLogado, dtmPrincipal.ConexaoDB);
 end;
 
 procedure TfrmPrincipal.FICHADECLIENTE1Click(Sender: TObject);
 begin
-  CriarRelatorio(TfrmRelCadClienteFicha);
+  TFuncao.CriarRelatorio(TfrmRelCadClienteFicha, oUsuarioLogado, dtmPrincipal.ConexaoDB);
 end;
 
 procedure TfrmPrincipal.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -149,7 +147,7 @@ begin
     TArquivoIni.AtualizarIni('SERVER', 'Database', 'NOME_DATABASE');
 
     MessageDlg('Arquivo ' +TArquivoIni.ArquivoIni+ ' Criado com sucesso' +#13+
-               'Configure o arquivo antes de inicializar a aplica��o', MtInformation, [mbOK], 0);
+               'Configure o arquivo antes de inicializar a aplicação', MtInformation, [mbOK], 0);
 
     Application.Terminate;
   end
@@ -169,7 +167,7 @@ begin
         if TArquivoIni.LerIni('SERVER', 'TipoDatabase') = 'MSSQL' then
           Protocol := 'mssql';
 
-        LibraryLocation         := 'C:\Projetos\curso_delphi\ntwdblib.dll';
+        LibraryLocation         := 'C:\Projetos\Curso Delphi com SQL Server Udemy\ntwdblib.dll';
         HostName                := TArquivoIni.LerIni('SERVER', 'Hostname');
         Port                    := StrToInt(TArquivoIni.LerIni('SERVER', 'Port'));
         User                    := TArquivoIni.LerIni('SERVER', 'User');
@@ -235,17 +233,17 @@ end;
 
 procedure TfrmPrincipal.PRODUTO1Click(Sender: TObject);
 begin
-  CriarForm(TfrmCadProduto);
+  TFuncao.CriarForm(TfrmCadProduto, oUsuarioLogado, dtmPrincipal.ConexaoDB);
 end;
 
 procedure TfrmPrincipal.PRODUTO2Click(Sender: TObject);
 begin
-  CriarRelatorio(TfrmRelCadProduto);
+  TFuncao.CriarRelatorio(TfrmRelCadProduto, oUsuarioLogado, dtmPrincipal.ConexaoDB);
 end;
 
 procedure TfrmPrincipal.PRODUTOPORCATEGORIA1Click(Sender: TObject);
 begin
-  CriarRelatorio(TfrmRelCadProdutoPorCategoria);
+  TFuncao.CriarRelatorio(TfrmRelCadProdutoPorCategoria, oUsuarioLogado, dtmPrincipal.ConexaoDB);
 end;
 
 procedure TfrmPrincipal.tmrAtualizacaoDashboardTimer(Sender: TObject);
@@ -255,12 +253,12 @@ end;
 
 procedure TfrmPrincipal.USUARIO1Click(Sender: TObject);
 begin
-  CriarForm(TfrmCadUsuario);
+  TFuncao.CriarForm(TfrmCadUsuario, oUsuarioLogado, dtmPrincipal.ConexaoDB);
 end;
 
 procedure TfrmPrincipal.USUARIOSVSAES1Click(Sender: TObject);
 begin
-  CriarForm(TfrmUsuariosVsAcoes);
+  TFuncao.CriarForm(TfrmUsuariosVsAcoes, oUsuarioLogado, dtmPrincipal.ConexaoDB);
 end;
 
 procedure TfrmPrincipal.VENDAPORDATA1Click(Sender: TObject);
@@ -279,7 +277,7 @@ begin
     end
     else
     begin
-      MessageDlg('Usuário: ' +oUsuarioLogado.nome+ ' não tem permiss�o de acesso', mtWarning, [mbOk], 0);
+      MessageDlg('Usuário: ' +oUsuarioLogado.nome+ ' não tem permissão de acesso', mtWarning, [mbOk], 0);
     end;
 
   Finally
@@ -293,17 +291,17 @@ end;
 
 procedure TfrmPrincipal.VENDAS1Click(Sender: TObject);
 begin
-  CriarForm(TfrmProVenda);
+  TFuncao.CriarForm(TfrmProVenda, oUsuarioLogado, dtmPrincipal.ConexaoDB);
 end;
 
 procedure TfrmPrincipal.ALTERARSENHA1Click(Sender: TObject);
 begin
-  CriarForm(TfrmAlterarSenha);
+  TFuncao.CriarForm(TfrmAlterarSenha, oUsuarioLogado, dtmPrincipal.ConexaoDB);
 end;
 
 procedure TfrmPrincipal.AOACESSO1Click(Sender: TObject);
 begin
-  CriarForm(TfrmCadAcaoAcesso);
+  TFuncao.CriarForm(TfrmCadAcaoAcesso, oUsuarioLogado, dtmPrincipal.ConexaoDB);
 end;
 
 procedure TfrmPrincipal.AtualizacaoBancoDados(aForm: TfrmAtualizaDB);
@@ -318,61 +316,6 @@ begin
   Finally
     if Assigned(oAtualizarMSSQL) then
       FreeAndNil(oAtualizarMSSQL);
-  End;
-end;
-
-procedure TfrmPrincipal.CriarForm(aNomeForm: TFormClass);
-var
-  form: TForm;
-begin
-  Try
-    tmrAtualizacaoDashboard.Enabled := false;
-    form := aNomeForm.Create(Application);
-
-    if TUsuarioLogado.TenhoAcesso(oUsuarioLogado.codigo, form.Name, DtmPrincipal.ConexaoDB) then
-      form.ShowModal
-    else
-      MessageDlg('Usuário: ' +oUsuarioLogado.nome+ ' não tem permiss�o de acesso', mtWarning, [mbOk], 0);
-
-    form.ShowModal;
-  Finally
-    if Assigned(form) then
-      form.Release;
-    AtualizarDashboard;
-    tmrAtualizacaoDashboard.Enabled := true;
-  End;
-end;
-
-procedure TfrmPrincipal.CriarRelatorio(aForm: TFormClass);
-var
-  form: TForm;
-  aRelatorio: TRLReport;
-  i: Integer;
-begin
-  Try
-    tmrAtualizacaoDashboard.Enabled := false;
-    form := aForm.Create(Application);
-
-    if TUsuarioLogado.TenhoAcesso(oUsuarioLogado.codigo, form.Name, DtmPrincipal.ConexaoDB) then
-    begin
-      for i := 0 to form.ComponentCount - 1 do
-      begin
-        if form.Components[i] is TRLReport then
-        begin
-          TRLReport(Components[i]).PreviewModal;
-          break;
-        end;
-      end;
-    end
-    else
-    begin
-      MessageDlg('Usuário: ' +oUsuarioLogado.nome+ ' não tem permiss�o de acesso', mtWarning, [mbOk], 0);
-    end;
-
-  Finally
-    if Assigned(form) then
-      form.Release;
-    tmrAtualizacaoDashboard.Enabled := true;
   End;
 end;
 

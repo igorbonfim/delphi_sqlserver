@@ -11,7 +11,6 @@ object dtmPrincipal: TdtmPrincipal
       'AutoEncodeStrings=True')
     AutoCommit = False
     TransactIsolationLevel = tiReadCommitted
-    Connected = True
     SQLHourGlass = True
     HostName = '.'
     Port = 1433
@@ -19,7 +18,7 @@ object dtmPrincipal: TdtmPrincipal
     User = 'sa'
     Password = '@ijbp12345'
     Protocol = 'mssql'
-    LibraryLocation = 'C:\Projetos\curso_delphi\ntwdblib.dll'
+    LibraryLocation = 'C:\Projetos\Curso Delphi com SQL Server Udemy\ntwdblib.dll'
     Left = 48
     Top = 32
   end

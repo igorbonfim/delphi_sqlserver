@@ -21,7 +21,7 @@ object frmPrincipal: TfrmPrincipal
   object Splitter1: TSplitter
     Left = 558
     Top = 41
-    Height = 589
+    Height = 649
     ExplicitLeft = 504
     ExplicitTop = 144
     ExplicitHeight = 100
@@ -62,9 +62,10 @@ object frmPrincipal: TfrmPrincipal
     Left = 0
     Top = 41
     Width = 558
-    Height = 589
+    Height = 649
     Align = alLeft
     TabOrder = 2
+    ExplicitHeight = 589
     object Splitter3: TSplitter
       Left = 1
       Top = 281
