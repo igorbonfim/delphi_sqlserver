@@ -41,7 +41,8 @@ uses
   uCadAcaoAcesso in 'Cadastro\uCadAcaoAcesso.pas' {frmCadAcaoAcesso},
   uUsuariosVsAcoes in 'Login\uUsuariosVsAcoes.pas' {frmUsuariosVsAcoes},
   uDTMGrafico in 'DataModule\uDTMGrafico.pas' {DTMGrafico: TDataModule},
-  cFuncao in 'Classes\cFuncao.pas';
+  cFuncao in 'Classes\cFuncao.pas',
+  uTelaHerancaConsulta in 'Heranca\uTelaHerancaConsulta.pas' {frmTelaHerancaConsulta};
 
 {$R *.res}
 

@@ -214,6 +214,10 @@
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="Classes\cFuncao.pas"/>
+        <DCCReference Include="Heranca\uTelaHerancaConsulta.pas">
+            <Form>frmTelaHerancaConsulta</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>
