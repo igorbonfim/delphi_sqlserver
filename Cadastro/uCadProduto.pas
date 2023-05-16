@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uTelaHeranca, Data.DB,
   ZAbstractRODataset, ZAbstractDataset, ZDataset, Vcl.DBCtrls, Vcl.Grids,
   Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask, Vcl.ExtCtrls, Vcl.ComCtrls,
-  cCadProduto, uEnum, uDTMConexao, RxToolEdit, RxCurrEdit;
+  cCadProduto, uEnum, uDTMConexao, RxToolEdit, RxCurrEdit, cFuncao;
 
 type
   TfrmCadProduto = class(TfrmTelaHeranca)
@@ -32,6 +32,8 @@ type
     Label4: TLabel;
     edtValor: TCurrencyEdit;
     edtQuantidade: TCurrencyEdit;
+    spbIncluirCategoria: TSpeedButton;
+    spbConsultarCategoria: TSpeedButton;
     procedure btnAlterarClick(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -39,6 +41,8 @@ type
     procedure FormShow(Sender: TObject);
     procedure tabManutencaoContextPopup(Sender: TObject; MousePos: TPoint;
       var Handled: Boolean);
+    procedure spbIncluirCategoriaClick(Sender: TObject);
+    procedure spbConsultarCategoriaClick(Sender: TObject);
   private
     { Private declarations }
     oProduto : TProduto;
@@ -54,6 +58,8 @@ var
 implementation
 
 {$R *.dfm}
+
+uses uCadCategoria, uPrincipal, uConsultaCategoria;
 
 {$region 'Override'}
 function TfrmCadProduto.Apagar : Boolean;
@@ -82,6 +88,32 @@ begin
   else if (EstadoDoCadastro = ecAlterar) then
      Result := oProduto.Atualizar;
 end;
+
+procedure TfrmCadProduto.spbConsultarCategoriaClick(Sender: TObject);
+begin
+  inherited;
+  try
+    frmConsultaCategoria := TfrmConsultaCategoria.Create(Self);
+
+    if lkpCategoria.KeyValue <> Null then
+      frmConsultaCategoria.aIniciarPesquisaId := lkpCategoria.KeyValue;
+
+    frmConsultaCategoria.ShowModal;
+
+    if frmConsultaCategoria.aRetornarIdSelecionado <> Unassigned then //Não atribuído
+      lkpCategoria.KeyValue := frmConsultaCategoria.aRetornarIdSelecionado;
+  finally
+    frmConsultaCategoria.Release;
+  end;
+end;
+
+procedure TfrmCadProduto.spbIncluirCategoriaClick(Sender: TObject);
+begin
+  inherited;
+  TFuncao.CriarForm(TfrmCadCategoria, oUsuarioLogado, dtmPrincipal.ConexaoDB);
+  QryCategoria.Refresh;
+end;
+
 procedure TfrmCadProduto.tabManutencaoContextPopup(Sender: TObject;
   MousePos: TPoint; var Handled: Boolean);
 begin

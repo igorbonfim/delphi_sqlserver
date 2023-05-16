@@ -42,7 +42,8 @@ uses
   uUsuariosVsAcoes in 'Login\uUsuariosVsAcoes.pas' {frmUsuariosVsAcoes},
   uDTMGrafico in 'DataModule\uDTMGrafico.pas' {DTMGrafico: TDataModule},
   cFuncao in 'Classes\cFuncao.pas',
-  uTelaHerancaConsulta in 'Heranca\uTelaHerancaConsulta.pas' {frmTelaHerancaConsulta};
+  uTelaHerancaConsulta in 'Heranca\uTelaHerancaConsulta.pas' {frmTelaHerancaConsulta},
+  uConsultaCategoria in 'Consulta\uConsultaCategoria.pas' {frmConsultaCategoria};
 
 {$R *.res}
 
