@@ -11,7 +11,10 @@ uses  System.Classes,
       ZAbstractRODataset,
       ZAbstractDataset,
       ZDataset,
-      System.SysUtils;
+      System.SysUtils,
+      System.StrUtils,
+      Vcl.Imaging.jpeg,
+      Vcl.Graphics;
 
 type
   TProduto = class
@@ -23,6 +26,7 @@ type
       F_valor : Double;
       F_quantidade : Double;
       F_categoriaId : Integer;
+      F_Foto: TBitmap;
 
     public
       constructor Create(aConexao : TZConnection);
@@ -38,6 +42,7 @@ type
       property valor        :Double   read F_valor        write F_valor;
       property quantidade   :Double   read F_quantidade   write F_quantidade;
       property categoriaId  :Integer  read F_categoriaId  write F_categoriaId;
+      property foto         :TBitmap  read F_Foto         write F_Foto;
   end;
 
 implementation
@@ -46,10 +51,19 @@ implementation
 constructor TProduto.Create(aConexao: TZConnection);
 begin
   ConexaoDB := aConexao;
+
+  F_Foto := TBitmap.Create;
+  F_Foto.Assign(nil);
 end;
 
 destructor TProduto.Destroy;
 begin
+
+  if Assigned(F_Foto) then
+  begin
+    F_Foto.Assign(nil);
+    F_Foto.Free;
+  end;
 
   inherited;
 end;
@@ -106,6 +120,7 @@ begin
                 '       ,descricao    =:descricao '+
                 '       ,valor        =:valor '+
                 '       ,quantidade   =:quantidade '+
+                '       ,foto         =:foto '+
                 '       ,categoriaId  =:categoriaId '+
                 '   WHERE produtoId   =:produtoId');
     Qry.ParamByName('produtoId').AsInteger    := Self.F_produtoId;
@@ -114,6 +129,11 @@ begin
     Qry.ParamByName('valor').AsFloat          := Self.F_valor;
     Qry.ParamByName('quantidade').AsFloat     := Self.F_quantidade;
     Qry.ParamByName('categoriaId').AsInteger  := Self.F_categoriaId;
+
+    if Self.F_Foto.Empty then
+      Qry.ParamByName('foto').Clear
+    else
+      Qry.ParamByName('foto').Assign(Self.F_Foto);
 
     Try
       ConexaoDB.StartTransaction;
@@ -143,17 +163,24 @@ begin
                 '                      descricao, '+
                 '                      valor, '+
                 '                      quantidade, '+
-                '                      categoriaId) '+
+                '                      categoriaId, '+
+                '                      foto) '+
                 'VALUES               (:nome, '+
                 '                      :descricao, '+
                 '                      :valor, '+
                 '                      :quantidade, '+
-                '                      :categoriaId)' );
+                '                      :categoriaId, '+
+                '                      :foto)');
     Qry.ParamByName('nome').AsString          := Self.F_nome;
     Qry.ParamByName('descricao').AsString     := Self.F_descricao;
     Qry.ParamByName('valor').AsFloat          := Self.F_valor;
     Qry.ParamByName('quantidade').AsFloat     := Self.F_quantidade;
     Qry.ParamByName('categoriaId').AsInteger  := Self.F_categoriaId;
+
+    if Self.F_Foto.Empty then
+      Qry.ParamByName('foto').Clear
+    else
+      Qry.ParamByName('foto').Assign(Self.F_Foto);
 
     Try
       ConexaoDB.StartTransaction;
@@ -184,7 +211,8 @@ begin
                 '       descricao, '+
                 '       valor, '+
                 '       quantidade, '+
-                '       categoriaId '+
+                '       categoriaId, '+
+                '       foto '+
                 'FROM   produtos '+
                 'WHERE  produtoId = :produtoId');
     Qry.ParamByName('produtoId').AsInteger := id;
@@ -197,6 +225,7 @@ begin
       Self.F_valor       := Qry.FieldByName('valor').AsFloat;
       Self.F_quantidade  := Qry.FieldByName('quantidade').AsFloat;
       Self.F_categoriaId := Qry.FieldByName('categoriaId').AsInteger;
+      Self.F_Foto.Assign(Qry.FieldByName('foto'));
     Except
       Result := false;
     End;
@@ -207,4 +236,5 @@ begin
   end;
 end;
 {$endRegion}
+
 end.

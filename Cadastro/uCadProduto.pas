@@ -48,6 +48,8 @@ type
       var Handled: Boolean);
     procedure spbIncluirCategoriaClick(Sender: TObject);
     procedure spbConsultarCategoriaClick(Sender: TObject);
+    procedure LimparImagem1Click(Sender: TObject);
+    procedure CarregarImagem1Click(Sender: TObject);
   private
     { Private declarations }
     oProduto : TProduto;
@@ -88,10 +90,21 @@ begin
   oProduto.valor        := edtValor.Value;
   oProduto.quantidade   := edtQuantidade.Value;
 
+  if imgImagemProduto.Picture.Bitmap.Empty then
+    oProduto.foto.Assign(nil)
+  else
+    oProduto.foto.Assign(imgImagemProduto);
+
   if (EstadoDoCadastro = ecInserir) then
      Result := oProduto.Inserir
   else if (EstadoDoCadastro = ecAlterar) then
      Result := oProduto.Atualizar;
+end;
+
+procedure TfrmCadProduto.LimparImagem1Click(Sender: TObject);
+begin
+  inherited;
+  TFuncao.LimparImagem(imgImagemProduto);
 end;
 
 procedure TfrmCadProduto.spbConsultarCategoriaClick(Sender: TObject);
@@ -138,6 +151,7 @@ begin
      lkpCategoria.KeyValue  := oProduto.categoriaId;
      edtValor.Value         := oProduto.valor;
      edtQuantidade.Value    := oProduto.quantidade;
+     imgImagemProduto.Picture.Assign(oProduto.foto);
   end
   else
   begin
@@ -152,6 +166,12 @@ procedure TfrmCadProduto.btnNovoClick(Sender: TObject);
 begin
   inherited;
   edtNome.SetFocus;
+end;
+
+procedure TfrmCadProduto.CarregarImagem1Click(Sender: TObject);
+begin
+  inherited;
+  TFuncao.CarregarImagem(imgImagemProduto);
 end;
 
 procedure TfrmCadProduto.FormClose(Sender: TObject; var Action: TCloseAction);

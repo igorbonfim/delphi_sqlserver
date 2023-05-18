@@ -301,9 +301,11 @@ inherited frmCadProduto: TfrmCadProduto
     Top = 32
     object CarregarImagem1: TMenuItem
       Caption = 'Carregar Imagem'
+      OnClick = CarregarImagem1Click
     end
     object LimparImagem1: TMenuItem
       Caption = 'Limpar Imagem'
+      OnClick = LimparImagem1Click
     end
   end
 end
