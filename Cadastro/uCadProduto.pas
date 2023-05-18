@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uTelaHeranca, Data.DB,
   ZAbstractRODataset, ZAbstractDataset, ZDataset, Vcl.DBCtrls, Vcl.Grids,
   Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask, Vcl.ExtCtrls, Vcl.ComCtrls,
-  cCadProduto, uEnum, uDTMConexao, RxToolEdit, RxCurrEdit, cFuncao;
+  cCadProduto, uEnum, uDTMConexao, RxToolEdit, RxCurrEdit, cFuncao, Vcl.Menus;
 
 type
   TfrmCadProduto = class(TfrmTelaHeranca)
@@ -34,6 +34,11 @@ type
     edtQuantidade: TCurrencyEdit;
     spbIncluirCategoria: TSpeedButton;
     spbConsultarCategoria: TSpeedButton;
+    pnlImagemProduto: TPanel;
+    imgImagemProduto: TImage;
+    popMenuImagem: TPopupMenu;
+    CarregarImagem1: TMenuItem;
+    LimparImagem1: TMenuItem;
     procedure btnAlterarClick(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);

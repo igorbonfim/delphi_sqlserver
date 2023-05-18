@@ -59,14 +59,14 @@ inherited frmCadProduto: TfrmCadProduto
         Caption = 'Quantidade'
       end
       object Label4: TLabel
-        Left = 401
+        Left = 288
         Top = 62
         Width = 47
         Height = 13
         Caption = 'Categoria'
       end
       object spbIncluirCategoria: TSpeedButton
-        Left = 698
+        Left = 582
         Top = 78
         Width = 23
         Height = 22
@@ -100,7 +100,7 @@ inherited frmCadProduto: TfrmCadProduto
         OnClick = spbIncluirCategoriaClick
       end
       object spbConsultarCategoria: TSpeedButton
-        Left = 722
+        Left = 606
         Top = 78
         Width = 23
         Height = 22
@@ -150,7 +150,7 @@ inherited frmCadProduto: TfrmCadProduto
         Tag = 2
         Left = 11
         Top = 78
-        Width = 382
+        Width = 272
         Height = 21
         EditLabel.Width = 27
         EditLabel.Height = 13
@@ -167,7 +167,7 @@ inherited frmCadProduto: TfrmCadProduto
         TabOrder = 3
       end
       object lkpCategoria: TDBLookupComboBox
-        Left = 399
+        Left = 286
         Top = 78
         Width = 293
         Height = 21
@@ -191,6 +191,26 @@ inherited frmCadProduto: TfrmCadProduto
         DisplayFormat = ' 0.00'
         TabOrder = 5
       end
+      object pnlImagemProduto: TPanel
+        Left = 635
+        Top = 0
+        Width = 110
+        Height = 99
+        BorderStyle = bsSingle
+        TabOrder = 6
+        object imgImagemProduto: TImage
+          Left = 1
+          Top = 1
+          Width = 104
+          Height = 93
+          Align = alClient
+          PopupMenu = popMenuImagem
+          ExplicitLeft = 64
+          ExplicitTop = 40
+          ExplicitWidth = 105
+          ExplicitHeight = 105
+        end
+      end
     end
   end
   inherited pnlRodape: TPanel
@@ -209,6 +229,7 @@ inherited frmCadProduto: TfrmCadProduto
       #9'   c.descricao As DescricaoCategoria'
       '  FROM produtos as p'
       '  LEFT JOIN Categorias as c on c.categoriaId = p.categoriaId')
+    Left = 375
     object QryListagemprodutoId: TIntegerField
       DisplayLabel = 'C'#243'digo'
       FieldName = 'produtoId'
@@ -249,12 +270,15 @@ inherited frmCadProduto: TfrmCadProduto
       Size = 30
     end
   end
+  inherited dtsListagem: TDataSource
+    Left = 439
+  end
   object QryCategoria: TZQuery
     Connection = dtmPrincipal.ConexaoDB
     SQL.Strings = (
       'SELECT categoriaId, descricao FROM Categorias')
     Params = <>
-    Left = 540
+    Left = 380
     Top = 96
     object QryCategoriacategoriaId: TIntegerField
       DisplayLabel = 'C'#243'digo'
@@ -269,7 +293,17 @@ inherited frmCadProduto: TfrmCadProduto
   end
   object dtsCategoria: TDataSource
     DataSet = QryCategoria
-    Left = 596
+    Left = 436
     Top = 96
+  end
+  object popMenuImagem: TPopupMenu
+    Left = 663
+    Top = 32
+    object CarregarImagem1: TMenuItem
+      Caption = 'Carregar Imagem'
+    end
+    object LimparImagem1: TMenuItem
+      Caption = 'Limpar Imagem'
+    end
   end
 end

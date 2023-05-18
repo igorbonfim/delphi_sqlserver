@@ -74,10 +74,13 @@ end;
 procedure TAtualizacaoCamposMSSQL.Versao1;
 begin
   if not CampoExisteNaTabela('Categorias', 'teste') then
-    ExecutaDiretoBancoDeDados('ALTER TABLE Categorias ADD Teste varchar(30) NULL');
+    ExecutaDiretoBancoDeDados('ALTER TABLE Categorias ADD Teste varchar(30) NULL ');
 
   if CampoExisteNaTabela('Categorias', 'teste') then
-    ExecutaDiretoBancoDeDados('ALTER TABLE Categorias DROP COLUMN Teste');
+    ExecutaDiretoBancoDeDados('ALTER TABLE Categorias DROP COLUMN Teste ');
+
+  if not CampoExisteNaTabela('Produtos', 'fotos') then
+    ExecutaDiretoBancoDeDados('ALTER TABLE Produtos ADD foto VarBinary(MAX) ');
 end;
 
 end.
