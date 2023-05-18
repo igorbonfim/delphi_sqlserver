@@ -2,8 +2,8 @@ object frmPrincipal: TfrmPrincipal
   Left = 0
   Top = 0
   Caption = 'Vendas'
-  ClientHeight = 709
-  ClientWidth = 1008
+  ClientHeight = 653
+  ClientWidth = 1128
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,32 +18,26 @@ object frmPrincipal: TfrmPrincipal
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
-  object Splitter1: TSplitter
-    Left = 558
-    Top = 41
-    Height = 649
-    ExplicitLeft = 504
-    ExplicitTop = 144
-    ExplicitHeight = 100
-  end
   object StbPrincipal: TStatusBar
     Left = 0
-    Top = 690
-    Width = 1008
+    Top = 634
+    Width = 1128
     Height = 19
     Panels = <
       item
         Width = 150
       end>
+    ExplicitTop = 670
   end
   object pnlDashboard: TPanel
     Left = 0
     Top = 0
-    Width = 1008
+    Width = 1128
     Height = 41
     Align = alTop
     TabOrder = 1
     OnClick = pnlDashboardClick
+    ExplicitTop = 8
     object Label1: TLabel
       Left = 6
       Top = 9
@@ -58,39 +52,74 @@ object frmPrincipal: TfrmPrincipal
       ParentFont = False
     end
   end
-  object pnlEsquerda: TPanel
+  object GridPanel1: TGridPanel
     Left = 0
     Top = 41
-    Width = 558
-    Height = 649
-    Align = alLeft
+    Width = 1128
+    Height = 593
+    Align = alClient
+    ColumnCollection = <
+      item
+        Value = 50.000000000000000000
+      end
+      item
+        Value = 50.000000000000000000
+      end>
+    ControlCollection = <
+      item
+        Column = 0
+        Control = pnlProdutoEmEstoque
+        Row = 0
+      end
+      item
+        Column = 1
+        Control = pnlValorVendaPorClienteUltimaSemana
+        Row = 0
+      end
+      item
+        Column = 0
+        Control = pnlVendasUltimaSemana
+        Row = 1
+      end
+      item
+        Column = 1
+        Control = pnl10ProdutosMaisVendidos
+        Row = 1
+      end>
+    RowCollection = <
+      item
+        Value = 50.000000000000000000
+      end
+      item
+        Value = 50.000000000000000000
+      end>
     TabOrder = 2
-    ExplicitHeight = 589
-    object Splitter3: TSplitter
-      Left = 1
-      Top = 281
-      Width = 556
-      Height = 3
-      Cursor = crVSplit
-      Align = alTop
-      ExplicitWidth = 307
-    end
-    object pnlProdutosEmEstoque: TPanel
+    ExplicitLeft = 200
+    ExplicitTop = 104
+    ExplicitWidth = 185
+    ExplicitHeight = 41
+    object pnlProdutoEmEstoque: TPanel
       Left = 1
       Top = 1
-      Width = 556
-      Height = 280
-      Align = alTop
+      Width = 563
+      Height = 296
+      Align = alClient
       TabOrder = 0
-      object DBChart1: TDBChart
+      ExplicitLeft = 168
+      ExplicitTop = 56
+      ExplicitWidth = 185
+      ExplicitHeight = 41
+      object DBChart4: TDBChart
         Left = 1
         Top = 1
-        Width = 554
-        Height = 278
+        Width = 561
+        Height = 294
         Title.Text.Strings = (
           'Produto em Estoque')
         Align = alClient
         TabOrder = 0
+        ExplicitLeft = 2
+        ExplicitTop = 2
         DefaultCanvas = 'TGDIPlusCanvas'
         ColorPaletteIndex = 13
         object Series1: TBarSeries
@@ -128,65 +157,23 @@ object frmPrincipal: TfrmPrincipal
         end
       end
     end
-    object pnlVendasUltimaSemana: TPanel
-      Left = 1
-      Top = 284
-      Width = 556
-      Height = 304
-      Align = alClient
-      TabOrder = 1
-      object DBChart4: TDBChart
-        Left = 1
-        Top = 1
-        Width = 554
-        Height = 302
-        Title.Text.Strings = (
-          'Vendas da '#218'ltima Semana')
-        Align = alClient
-        TabOrder = 0
-        DefaultCanvas = 'TGDIPlusCanvas'
-        ColorPaletteIndex = 13
-        object Series3: TFastLineSeries
-          DataSource = DTMGrafico.QryVendasUltimaSemana
-          Title = 'VendasDaUltimaSemana'
-          XLabelsSource = 'Label'
-          LinePen.Color = 10708548
-          XValues.Name = 'X'
-          XValues.Order = loAscending
-          YValues.Name = 'Y'
-          YValues.Order = loNone
-          YValues.ValueSource = 'Value'
-        end
-      end
-    end
-  end
-  object pnlDireita: TPanel
-    Left = 564
-    Top = 41
-    Width = 559
-    Height = 589
-    TabOrder = 3
-    object Splitter2: TSplitter
-      Left = 1
-      Top = 281
-      Width = 557
-      Height = 3
-      Cursor = crVSplit
-      Align = alTop
-      ExplicitWidth = 307
-    end
-    object pnlVendasPorClienteUltimaSemana: TPanel
-      Left = 1
+    object pnlValorVendaPorClienteUltimaSemana: TPanel
+      Left = 564
       Top = 1
-      Width = 557
-      Height = 280
-      Align = alTop
-      TabOrder = 0
+      Width = 563
+      Height = 296
+      Align = alClient
+      Caption = 'pnlValorVendaPorClienteUltimaSemana'
+      TabOrder = 1
+      ExplicitLeft = 792
+      ExplicitTop = 64
+      ExplicitWidth = 185
+      ExplicitHeight = 41
       object DBChart2: TDBChart
         Left = 1
         Top = 1
-        Width = 555
-        Height = 278
+        Width = 561
+        Height = 294
         Title.Text.Strings = (
           'Valor de Venda por Cliente na Ultima Semana')
         Legend.TextStyle = ltsLeftPercent
@@ -196,6 +183,10 @@ object frmPrincipal: TfrmPrincipal
         View3DOptions.Rotation = 360
         Align = alClient
         TabOrder = 0
+        ExplicitLeft = -30
+        ExplicitTop = 9
+        ExplicitWidth = 593
+        ExplicitHeight = 274
         DefaultCanvas = 'TGDIPlusCanvas'
         ColorPaletteIndex = 13
         object Series2: TPieSeries
@@ -252,18 +243,63 @@ object frmPrincipal: TfrmPrincipal
         end
       end
     end
-    object pnl10ProdutosMaisVendidos: TPanel
+    object pnlVendasUltimaSemana: TPanel
       Left = 1
-      Top = 284
-      Width = 557
-      Height = 304
+      Top = 297
+      Width = 563
+      Height = 295
       Align = alClient
-      TabOrder = 1
+      Caption = 'pnlVendasUltimaSemana'
+      TabOrder = 2
+      ExplicitLeft = 248
+      ExplicitTop = 384
+      ExplicitWidth = 185
+      ExplicitHeight = 41
+      object DBChart1: TDBChart
+        Left = 1
+        Top = 1
+        Width = 561
+        Height = 293
+        Title.Text.Strings = (
+          'Vendas da '#218'ltima Semana')
+        Align = alClient
+        TabOrder = 0
+        ExplicitLeft = -1
+        ExplicitTop = -26
+        ExplicitWidth = 554
+        ExplicitHeight = 337
+        DefaultCanvas = 'TGDIPlusCanvas'
+        ColorPaletteIndex = 13
+        object FastLineSeries1: TFastLineSeries
+          DataSource = DTMGrafico.QryVendasUltimaSemana
+          Title = 'VendasDaUltimaSemana'
+          XLabelsSource = 'Label'
+          LinePen.Color = 10708548
+          XValues.Name = 'X'
+          XValues.Order = loAscending
+          YValues.Name = 'Y'
+          YValues.Order = loNone
+          YValues.ValueSource = 'Value'
+        end
+      end
+    end
+    object pnl10ProdutosMaisVendidos: TPanel
+      Left = 564
+      Top = 297
+      Width = 563
+      Height = 295
+      Align = alClient
+      Caption = 'pnl10ProdutosMaisVendidos'
+      TabOrder = 3
+      ExplicitLeft = 752
+      ExplicitTop = 352
+      ExplicitWidth = 185
+      ExplicitHeight = 41
       object DBChart3: TDBChart
         Left = 1
         Top = 1
-        Width = 555
-        Height = 302
+        Width = 561
+        Height = 293
         Title.Text.Strings = (
           'Os 10 Produtos Mais Vendidos')
         Legend.TextStyle = ltsLeftPercent
@@ -273,6 +309,10 @@ object frmPrincipal: TfrmPrincipal
         View3DOptions.Rotation = 360
         Align = alClient
         TabOrder = 0
+        ExplicitLeft = 4
+        ExplicitTop = -42
+        ExplicitWidth = 559
+        ExplicitHeight = 337
         DefaultCanvas = 'TGDIPlusCanvas'
         ColorPaletteIndex = 13
         object PieSeries1: TPieSeries
