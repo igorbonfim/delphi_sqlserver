@@ -27,7 +27,6 @@ object frmPrincipal: TfrmPrincipal
       item
         Width = 150
       end>
-    ExplicitTop = 670
   end
   object pnlDashboard: TPanel
     Left = 0
@@ -37,7 +36,6 @@ object frmPrincipal: TfrmPrincipal
     Align = alTop
     TabOrder = 1
     OnClick = pnlDashboardClick
-    ExplicitTop = 8
     object Label1: TLabel
       Left = 6
       Top = 9
@@ -94,10 +92,6 @@ object frmPrincipal: TfrmPrincipal
         Value = 50.000000000000000000
       end>
     TabOrder = 2
-    ExplicitLeft = 200
-    ExplicitTop = 104
-    ExplicitWidth = 185
-    ExplicitHeight = 41
     object pnlProdutoEmEstoque: TPanel
       Left = 1
       Top = 1
@@ -105,10 +99,6 @@ object frmPrincipal: TfrmPrincipal
       Height = 296
       Align = alClient
       TabOrder = 0
-      ExplicitLeft = 168
-      ExplicitTop = 56
-      ExplicitWidth = 185
-      ExplicitHeight = 41
       object DBChart4: TDBChart
         Left = 1
         Top = 1
@@ -118,8 +108,6 @@ object frmPrincipal: TfrmPrincipal
           'Produto em Estoque')
         Align = alClient
         TabOrder = 0
-        ExplicitLeft = 2
-        ExplicitTop = 2
         DefaultCanvas = 'TGDIPlusCanvas'
         ColorPaletteIndex = 13
         object Series1: TBarSeries
@@ -165,10 +153,6 @@ object frmPrincipal: TfrmPrincipal
       Align = alClient
       Caption = 'pnlValorVendaPorClienteUltimaSemana'
       TabOrder = 1
-      ExplicitLeft = 792
-      ExplicitTop = 64
-      ExplicitWidth = 185
-      ExplicitHeight = 41
       object DBChart2: TDBChart
         Left = 1
         Top = 1
@@ -183,10 +167,6 @@ object frmPrincipal: TfrmPrincipal
         View3DOptions.Rotation = 360
         Align = alClient
         TabOrder = 0
-        ExplicitLeft = -30
-        ExplicitTop = 9
-        ExplicitWidth = 593
-        ExplicitHeight = 274
         DefaultCanvas = 'TGDIPlusCanvas'
         ColorPaletteIndex = 13
         object Series2: TPieSeries
@@ -251,10 +231,6 @@ object frmPrincipal: TfrmPrincipal
       Align = alClient
       Caption = 'pnlVendasUltimaSemana'
       TabOrder = 2
-      ExplicitLeft = 248
-      ExplicitTop = 384
-      ExplicitWidth = 185
-      ExplicitHeight = 41
       object DBChart1: TDBChart
         Left = 1
         Top = 1
@@ -264,10 +240,6 @@ object frmPrincipal: TfrmPrincipal
           'Vendas da '#218'ltima Semana')
         Align = alClient
         TabOrder = 0
-        ExplicitLeft = -1
-        ExplicitTop = -26
-        ExplicitWidth = 554
-        ExplicitHeight = 337
         DefaultCanvas = 'TGDIPlusCanvas'
         ColorPaletteIndex = 13
         object FastLineSeries1: TFastLineSeries
@@ -291,10 +263,6 @@ object frmPrincipal: TfrmPrincipal
       Align = alClient
       Caption = 'pnl10ProdutosMaisVendidos'
       TabOrder = 3
-      ExplicitLeft = 752
-      ExplicitTop = 352
-      ExplicitWidth = 185
-      ExplicitHeight = 41
       object DBChart3: TDBChart
         Left = 1
         Top = 1
@@ -309,10 +277,6 @@ object frmPrincipal: TfrmPrincipal
         View3DOptions.Rotation = 360
         Align = alClient
         TabOrder = 0
-        ExplicitLeft = 4
-        ExplicitTop = -42
-        ExplicitWidth = 559
-        ExplicitHeight = 337
         DefaultCanvas = 'TGDIPlusCanvas'
         ColorPaletteIndex = 13
         object PieSeries1: TPieSeries
@@ -377,6 +341,7 @@ object frmPrincipal: TfrmPrincipal
       Caption = 'CADASTRO'
       object CLIENTE1: TMenuItem
         Caption = 'CLIENTE'
+        ShortCut = 16451
         OnClick = CLIENTE1Click
       end
       object N1: TMenuItem
@@ -388,6 +353,7 @@ object frmPrincipal: TfrmPrincipal
       end
       object PRODUTO1: TMenuItem
         Caption = 'PRODUTO'
+        ShortCut = 16464
         OnClick = PRODUTO1Click
       end
       object N5: TMenuItem
@@ -424,6 +390,7 @@ object frmPrincipal: TfrmPrincipal
       Caption = 'MOVIMENTA'#199#195'O'
       object VENDAS1: TMenuItem
         Caption = 'VENDAS'
+        ShortCut = 120
         OnClick = VENDAS1Click
       end
     end
