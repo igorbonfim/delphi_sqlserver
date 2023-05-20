@@ -93,7 +93,7 @@ begin
   if imgImagemProduto.Picture.Bitmap.Empty then
     oProduto.foto.Assign(nil)
   else
-    oProduto.foto.Assign(imgImagemProduto);
+    oProduto.foto.Assign(imgImagemProduto.Picture);
 
   if (EstadoDoCadastro = ecInserir) then
      Result := oProduto.Inserir

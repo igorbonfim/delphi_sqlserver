@@ -142,6 +142,7 @@ begin
       '  descricao varchar(255) NULL, '+
       '  valor decimal(18,5) default 0.00000 NULL, '+
       '  quantidade decimal(18,5) default 0.00000 NULL, '+
+      '  foto VarBinary(MAX) '+
       '  categoriaId int NULL, '+
       '  PRIMARY KEY (produtoId), '+
       '  CONSTRAINT FK_ProdutosCategorias '+

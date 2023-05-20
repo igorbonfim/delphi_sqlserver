@@ -63,6 +63,7 @@ end;
 constructor TAtualizacaoCamposMSSQL.Create(aConexao: TZConnection);
 begin
   ConexaoDB := aConexao;
+  //Versao1;
 end;
 
 destructor TAtualizacaoCamposMSSQL.Destroy;
@@ -79,7 +80,7 @@ begin
   if CampoExisteNaTabela('Categorias', 'teste') then
     ExecutaDiretoBancoDeDados('ALTER TABLE Categorias DROP COLUMN Teste ');
 
-  if not CampoExisteNaTabela('Produtos', 'fotos') then
+  if not CampoExisteNaTabela('Produtos', 'foto') then
     ExecutaDiretoBancoDeDados('ALTER TABLE Produtos ADD foto VarBinary(MAX) ');
 end;
 

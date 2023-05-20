@@ -204,7 +204,10 @@ inherited frmCadProduto: TfrmCadProduto
           Width = 104
           Height = 93
           Align = alClient
+          AutoSize = True
+          Center = True
           PopupMenu = popMenuImagem
+          Stretch = True
           ExplicitLeft = 64
           ExplicitTop = 40
           ExplicitWidth = 105
