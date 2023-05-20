@@ -176,6 +176,27 @@ object frmUsuariosVsAcoes: TfrmUsuariosVsAcoes
         Name = 'usuarioId'
         ParamType = ptUnknown
       end>
+    object QryAcoesusuarioId: TIntegerField
+      DisplayLabel = 'Id Usu'#225'rio'
+      FieldName = 'usuarioId'
+      Required = True
+    end
+    object QryAcoesacaoAcessoId: TIntegerField
+      DisplayLabel = 'A'#231#227'o acesso'
+      FieldName = 'acaoAcessoId'
+      Required = True
+    end
+    object QryAcoesdescricao: TWideStringField
+      DisplayLabel = 'Descri'#231#227'o'
+      FieldName = 'descricao'
+      Required = True
+      Size = 100
+    end
+    object QryAcoesativo: TBooleanField
+      DisplayLabel = 'Ativo'
+      FieldName = 'ativo'
+      Required = True
+    end
   end
   object dtsUsuario: TDataSource
     DataSet = QryUsuario

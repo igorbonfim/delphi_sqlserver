@@ -23,6 +23,10 @@ type
     QryUsuariousuarioID: TIntegerField;
     QryUsuarionome: TWideStringField;
     btnFechar: TBitBtn;
+    QryAcoesusuarioId: TIntegerField;
+    QryAcoesacaoAcessoId: TIntegerField;
+    QryAcoesdescricao: TWideStringField;
+    QryAcoesativo: TBooleanField;
     procedure QryUsuarioAfterScroll(DataSet: TDataSet);
     procedure FormShow(Sender: TObject);
     procedure btnFecharClick(Sender: TObject);
