@@ -88,7 +88,6 @@ begin
   frmRelProVenda.QryVendaItens.ParamByName('VendaId').AsInteger := oVenda.VendaId;
   frmRelProVenda.QryVendaItens.Open;
 
-  frmRelProVenda.QryVenda.Close;
   frmRelProVenda.Relatorio.PreviewModal;
   frmRelProVenda.Release;
 end;
@@ -139,21 +138,21 @@ begin
 
   if lkpProduto.KeyValue = Null then
   begin
-    MessageDlg('Produto é um campo obrigatório', mtInformation, [mbOk], 0);
+    MessageDlg('Produto ï¿½ um campo obrigatï¿½rio', mtInformation, [mbOk], 0);
     lkpProduto.SetFocus;
     abort;
   end;
 
   if edtValorUnitario.Value <= 0 then
   begin
-    MessageDlg('Valor unitário não pode ser zero', mtInformation, [mbOk], 0);
+    MessageDlg('Valor unitï¿½rio nï¿½o pode ser zero', mtInformation, [mbOk], 0);
     edtValorUnitario.SetFocus;
     abort;
   end;
 
   if edtQuantidade.Value <= 0 then
   begin
-    MessageDlg('Quantidade não pode ser zero', mtInformation, [mbOk], 0);
+    MessageDlg('Quantidade nï¿½o pode ser zero', mtInformation, [mbOk], 0);
     edtQuantidade.SetFocus;
     abort;
   end;
@@ -236,7 +235,7 @@ begin
   inherited;
   if lkpProduto.KeyValue = Null then
   begin
-    MessageDlg('Selecione o produto a ser excluído', mtInformation, [mbOk], 0);
+    MessageDlg('Selecione o produto a ser excluï¿½do', mtInformation, [mbOk], 0);
     dgGridItensVenda.SetFocus;
     abort;
   end;
