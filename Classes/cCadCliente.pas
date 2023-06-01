@@ -17,15 +17,17 @@ type
   TCliente = class
     private
       ConexaoDB:TZConnection;
-      F_clienteId:Integer; //Int
-      F_nome: String; //Varchar
+      F_clienteId: Integer; //Int
+      F_nome: string; //Varchar
       F_endereco: string;
-      F_cidade: String;
-      F_bairro: String;
-      F_estado: String;
-      F_cep: String;
-      F_telefone: String;
-      F_email: String;
+      F_numero: string;
+      F_complemento: string;
+      F_cidade: string;
+      F_bairro: string;
+      F_estado: string;
+      F_cep: string;
+      F_telefone: string;
+      F_email: string;
       F_dataNascimento: TDateTime;
 
       public
@@ -37,14 +39,16 @@ type
         function Selecionar(id:Integer):Boolean;
       published
         property codigo         :Integer    read F_clienteId      write F_clienteId;
-        property nome           :String     read F_nome           write F_nome;
-        property endereco       :String     read F_endereco       write F_endereco;
-        property cidade         :String     read F_cidade         write F_cidade;
-        property bairro         :String     read F_bairro         write F_bairro;
-        property estado         :String     read F_estado         write F_estado;
-        property cep            :String     read F_cep            write F_cep;
-        property telefone       :String     read F_telefone       write F_telefone;
-        property email          :String     read F_email          write F_email;
+        property nome           :string     read F_nome           write F_nome;
+        property endereco       :string     read F_endereco       write F_endereco;
+        property numero         :string     read F_numero         write F_numero;
+        property complemento    :string     read F_complemento    write F_complemento;
+        property cidade         :string     read F_cidade         write F_cidade;
+        property bairro         :string     read F_bairro         write F_bairro;
+        property estado         :string     read F_estado         write F_estado;
+        property cep            :string     read F_cep            write F_cep;
+        property telefone       :string     read F_telefone       write F_telefone;
+        property email          :string     read F_email          write F_email;
         property dataNascimento :TDateTime  read F_dataNascimento write F_dataNascimento;
       end;
 
@@ -111,6 +115,8 @@ begin
     Qry.SQL.Add('UPDATE clientes '+
                 'SET  nome            = :nome '+
                 '    ,endereco        = :endereco '+
+                '    ,numero          = :numero '+
+                '    ,complemento     = :complemento '+
                 '    ,cidade          = :cidade '+
                 '    ,bairro          = :bairro '+
                 '    ,estado          = :estado '+
@@ -122,6 +128,8 @@ begin
     Qry.ParamByName('clienteId').AsInteger        := Self.F_clienteId;
     Qry.ParamByName('nome').AsString              := Self.F_nome;
     Qry.ParamByName('endereco').AsString          := Self.F_endereco;
+    Qry.ParamByName('numero').AsString            := Self.F_numero;
+    Qry.ParamByName('complemento').AsString       := Self.F_complemento;
     Qry.ParamByName('cidade').AsString            := Self.F_cidade;
     Qry.ParamByName('bairro').AsString            := Self.F_bairro;
     Qry.ParamByName('estado').AsString            := Self.F_estado;
@@ -156,6 +164,8 @@ begin
     Qry.SQL.Clear;
     Qry.SQL.Add('INSERT INTO clientes (nome, '+
                                        'endereco, '+
+                                       'numero, '+
+                                       'complemento, '+
                                        'cidade, '+
                                        'bairro, '+
                                        'estado, '+
@@ -165,6 +175,8 @@ begin
                                        'dataNascimento) '+
                ' VALUES                (:nome, '+
                                        ':endereco, '+
+                                       ':numero, '+
+                                       ':complemento, '+
                                        ':cidade, '+
                                        ':bairro, '+
                                        ':estado, '+
@@ -175,6 +187,8 @@ begin
 
     Qry.ParamByName('nome').AsString              := Self.F_nome;
     Qry.ParamByName('endereco').AsString          := Self.F_endereco;
+    Qry.ParamByName('numero').AsString            := Self.F_numero;
+    Qry.ParamByName('complemento').AsString       := Self.F_complemento;
     Qry.ParamByName('cidade').AsString            := Self.F_cidade;
     Qry.ParamByName('bairro').AsString            := Self.F_bairro;
     Qry.ParamByName('estado').AsString            := Self.F_estado;
@@ -210,6 +224,8 @@ begin
     Qry.SQL.Add('SELECT clienteId,'+
                 '       nome, '+
                 '       endereco, '+
+                '       numero, '+
+                '       complemento, '+
                 '       cidade, '+
                 '       bairro, '+
                 '       estado, '+
@@ -226,6 +242,8 @@ begin
       Self.F_clienteId      := Qry.FieldByName('clienteId').AsInteger;
       Self.F_nome           := Qry.FieldByName('nome').AsString;
       Self.F_endereco       := Qry.FieldByName('endereco').AsString;
+      Self.F_numero         := Qry.FieldByName('numero').AsString;
+      Self.F_complemento    := Qry.FieldByName('complemento').AsString;
       Self.F_cidade         := Qry.FieldByName('cidade').AsString;
       Self.F_bairro         := Qry.FieldByName('bairro').AsString;
       Self.F_estado         := Qry.FieldByName('estado').AsString;

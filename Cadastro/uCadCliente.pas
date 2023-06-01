@@ -33,6 +33,10 @@ type
     QryListagemtelefone: TWideStringField;
     QryListagememail: TWideStringField;
     QryListagemdatanascimento: TDateTimeField;
+    edtNumero: TLabeledEdit;
+    edtComplemento: TLabeledEdit;
+    Label4: TLabel;
+    dbcEstado: TDBComboBox;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnNovoClick(Sender: TObject);
@@ -77,8 +81,11 @@ begin
   oCliente.nome           := edtNome.Text;
   oCliente.cep            := edtCEP.Text;
   oCliente.endereco       := edtEndereco.Text;
+  oCliente.numero         := edtNumero.Text;
+  oCliente.complemento    := edtComplemento.Text;
   oCliente.bairro         := edtBairro.Text;
   oCliente.cidade         := edtCidade.Text;
+  oCliente.estado         := dbcEstado.Text;
   oCliente.telefone       := edtTelefone.Text;
   oCliente.email          := edtEmail.Text;
   oCliente.dataNascimento := edtDataNascimento.Date;
@@ -98,8 +105,11 @@ begin
     edtNome.Text            := oCliente.nome;
     edtCEP.Text             := oCliente.cep;
     edtEndereco.Text        := oCliente.endereco;
+    edtNumero.Text          := oCliente.numero;
+    edtComplemento.Text     := oCliente.complemento;
     edtBairro.Text          := oCliente.bairro;
     edtCidade.Text          := oCliente.cidade;
+    dbcEstado.Text          := oCliente.estado;
     edtTelefone.Text        := oCliente.telefone;
     edtEmail.Text           := oCliente.email;
     edtDataNascimento.Date  := oCliente.dataNascimento;

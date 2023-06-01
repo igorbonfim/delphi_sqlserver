@@ -116,8 +116,10 @@ begin
     ExecutaDiretoBancoDeDados(
       'CREATE TABLE Clientes( '+
       '	 clienteId int IDENTITY(1,1) NOT NULL, '+
-      '	 nome varchar(60) NULL, '+
+      '	 nome varchar(60) NOT NULL, '+
       '	 endereco varchar(60) NULL, '+
+      '	 numero varchar(10) NULL, '+
+      '	 complemento varchar(50) NULL, '+
       '	 cidade varchar(50) NULL, '+
       '	 bairro varchar(40) NULL, '+
       '	 estado varchar(2) NULL, '+

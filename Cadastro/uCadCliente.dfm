@@ -40,30 +40,34 @@ inherited frmCadCliente: TfrmCadCliente
       end
     end
     inherited tabManutencao: TTabSheet
-      ExplicitLeft = 4
-      ExplicitTop = 24
       ExplicitWidth = 784
-      ExplicitHeight = 415
       object Label1: TLabel
-        Left = 427
-        Top = 64
+        Left = 11
+        Top = 104
         Width = 19
         Height = 13
         Caption = 'CEP'
       end
       object Label2: TLabel
-        Left = 427
-        Top = 168
+        Left = 139
+        Top = 261
         Width = 42
         Height = 13
         Caption = 'Telefone'
       end
       object Label3: TLabel
         Left = 11
-        Top = 262
+        Top = 261
         Width = 96
         Height = 13
         Caption = 'Data de Nascimento'
+      end
+      object Label4: TLabel
+        Left = 504
+        Top = 205
+        Width = 33
+        Height = 13
+        Caption = 'Estado'
       end
       object edtClienteId: TLabeledEdit
         Tag = 1
@@ -81,7 +85,7 @@ inherited frmCadCliente: TfrmCadCliente
       object edtNome: TLabeledEdit
         Tag = 2
         Left = 11
-        Top = 78
+        Top = 77
         Width = 382
         Height = 21
         EditLabel.Width = 27
@@ -91,82 +95,138 @@ inherited frmCadCliente: TfrmCadCliente
         TabOrder = 1
       end
       object edtCEP: TMaskEdit
-        Left = 427
-        Top = 78
-        Width = 149
+        Left = 11
+        Top = 118
+        Width = 68
         Height = 21
         EditMask = '99.999-999;1;_'
         MaxLength = 10
-        TabOrder = 2
+        TabOrder = 3
         Text = '  .   -   '
       end
       object edtEndereco: TLabeledEdit
-        Tag = 2
-        Left = 11
-        Top = 126
+        Left = 90
+        Top = 118
         Width = 382
         Height = 21
         EditLabel.Width = 45
         EditLabel.Height = 13
         EditLabel.Caption = 'Endere'#231'o'
         MaxLength = 60
-        TabOrder = 3
+        TabOrder = 4
       end
       object edtBairro: TLabeledEdit
-        Tag = 2
-        Left = 427
-        Top = 126
-        Width = 149
+        Left = 334
+        Top = 219
+        Width = 164
         Height = 21
         EditLabel.Width = 28
         EditLabel.Height = 13
         EditLabel.Caption = 'Bairro'
         MaxLength = 40
-        TabOrder = 4
+        TabOrder = 8
       end
       object edtCidade: TLabeledEdit
-        Tag = 2
         Left = 11
-        Top = 182
-        Width = 382
+        Top = 219
+        Width = 317
         Height = 21
         EditLabel.Width = 33
         EditLabel.Height = 13
         EditLabel.Caption = 'Cidade'
         MaxLength = 30
-        TabOrder = 5
+        TabOrder = 7
       end
       object edtTelefone: TMaskEdit
-        Left = 427
-        Top = 182
-        Width = 146
+        Left = 139
+        Top = 277
+        Width = 86
         Height = 21
         EditMask = '(99) 9999-9999;1;_'
         MaxLength = 14
-        TabOrder = 6
+        TabOrder = 11
         Text = '(  )     -    '
       end
       object edtEmail: TLabeledEdit
-        Tag = 2
-        Left = 11
-        Top = 230
-        Width = 382
+        Left = 399
+        Top = 78
+        Width = 157
         Height = 21
         EditLabel.Width = 28
         EditLabel.Height = 13
         EditLabel.Caption = 'E-mail'
         MaxLength = 100
-        TabOrder = 7
+        TabOrder = 2
       end
       object edtDataNascimento: TDateEdit
         Left = 11
-        Top = 280
+        Top = 277
         Width = 121
         Height = 21
         DialogTitle = 'Selecione a Data'
         NumGlyphs = 2
         CalendarStyle = csDialog
-        TabOrder = 8
+        TabOrder = 10
+      end
+      object edtNumero: TLabeledEdit
+        Left = 478
+        Top = 118
+        Width = 78
+        Height = 21
+        EditLabel.Width = 37
+        EditLabel.Height = 13
+        EditLabel.Caption = 'N'#250'mero'
+        MaxLength = 10
+        TabOrder = 5
+      end
+      object edtComplemento: TLabeledEdit
+        Left = 11
+        Top = 165
+        Width = 545
+        Height = 21
+        EditLabel.Width = 65
+        EditLabel.Height = 13
+        EditLabel.Caption = 'Complemento'
+        MaxLength = 60
+        TabOrder = 6
+      end
+      object dbcEstado: TDBComboBox
+        Left = 504
+        Top = 219
+        Width = 52
+        Height = 21
+        Style = csDropDownList
+        DataField = 'estado'
+        DataSource = dtsListagem
+        Items.Strings = (
+          'AC'
+          'AL'
+          'AP'
+          'AM'
+          'BA'
+          'CE'
+          'DF'
+          'ES'
+          'GO'
+          'MA'
+          'MT'
+          'MS'
+          'MG'
+          'PA'
+          'PB'
+          'PR'
+          'PE'
+          'PI'
+          'RJ'
+          'RN'
+          'RS'
+          'RO'
+          'RR'
+          'SC'
+          'SP'
+          'SE'
+          'TO')
+        TabOrder = 9
       end
     end
   end

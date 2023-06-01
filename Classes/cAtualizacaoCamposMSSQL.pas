@@ -63,7 +63,7 @@ end;
 constructor TAtualizacaoCamposMSSQL.Create(aConexao: TZConnection);
 begin
   ConexaoDB := aConexao;
-  //Versao1;
+  Versao1;
 end;
 
 destructor TAtualizacaoCamposMSSQL.Destroy;
@@ -82,6 +82,9 @@ begin
 
   if not CampoExisteNaTabela('Produtos', 'foto') then
     ExecutaDiretoBancoDeDados('ALTER TABLE Produtos ADD foto VarBinary(MAX) ');
+
+  if not CampoExisteNaTabela('Clientes', 'Complemento') then
+    ExecutaDiretoBancoDeDados('ALTER TABLE Clientes ADD Complemento Varchar(50) ');
 end;
 
 end.
