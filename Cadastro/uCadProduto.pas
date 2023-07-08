@@ -7,7 +7,8 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uTelaHeranca, Data.DB,
   ZAbstractRODataset, ZAbstractDataset, ZDataset, Vcl.DBCtrls, Vcl.Grids,
   Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask, Vcl.ExtCtrls, Vcl.ComCtrls,
-  cCadProduto, uEnum, uDTMConexao, RxToolEdit, RxCurrEdit, cFuncao, Vcl.Menus;
+  cCadProduto, uEnum, uDTMConexao, RxToolEdit, RxCurrEdit, cFuncao, Vcl.Menus,
+  SearchMore, EditClickKey, cCadCategoria;
 
 type
   TfrmCadProduto = class(TfrmTelaHeranca)
@@ -24,7 +25,6 @@ type
     Label1: TLabel;
     Label2: TLabel;
     Label3: TLabel;
-    lkpCategoria: TDBLookupComboBox;
     QryCategoria: TZQuery;
     dtsCategoria: TDataSource;
     QryCategoriacategoriaId: TIntegerField;
@@ -32,13 +32,14 @@ type
     Label4: TLabel;
     edtValor: TCurrencyEdit;
     edtQuantidade: TCurrencyEdit;
-    spbIncluirCategoria: TSpeedButton;
-    spbConsultarCategoria: TSpeedButton;
     pnlImagemProduto: TPanel;
     imgImagemProduto: TImage;
     popMenuImagem: TPopupMenu;
     CarregarImagem1: TMenuItem;
     LimparImagem1: TMenuItem;
+    edtSearchCategoriaId: TEditClickKey;
+    SearchMore1: TSearchMore;
+    edtSearchCategoriaDescricao: TEdit;
     procedure btnAlterarClick(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
@@ -47,14 +48,16 @@ type
     procedure tabManutencaoContextPopup(Sender: TObject; MousePos: TPoint;
       var Handled: Boolean);
     procedure spbIncluirCategoriaClick(Sender: TObject);
-    procedure spbConsultarCategoriaClick(Sender: TObject);
     procedure LimparImagem1Click(Sender: TObject);
     procedure CarregarImagem1Click(Sender: TObject);
+    procedure edtSearchCategoriaIdExit(Sender: TObject);
   private
     { Private declarations }
-    oProduto : TProduto;
+    oProduto: TProduto;
+    oCategoria: TCategoria;
     function Apagar : Boolean; override;
     function Gravar(EstadoDoCadastro : TEstadoDoCadastro) : Boolean; override;
+    procedure GetDescricaoCategoria;
   public
     { Public declarations }
   end;
@@ -86,7 +89,7 @@ begin
 
   oProduto.nome         := edtNome.Text;
   oProduto.descricao    := edtDescricao.Text;
-  oProduto.categoriaId  := lkpCategoria.KeyValue;
+  oProduto.categoriaId  := StrToInt(edtSearchCategoriaId.Text);
   oProduto.valor        := edtValor.Value;
   oProduto.quantidade   := edtQuantidade.Value;
 
@@ -105,24 +108,6 @@ procedure TfrmCadProduto.LimparImagem1Click(Sender: TObject);
 begin
   inherited;
   TFuncao.LimparImagem(imgImagemProduto);
-end;
-
-procedure TfrmCadProduto.spbConsultarCategoriaClick(Sender: TObject);
-begin
-  inherited;
-  try
-    frmConsultaCategoria := TfrmConsultaCategoria.Create(Self);
-
-    if lkpCategoria.KeyValue <> Null then
-      frmConsultaCategoria.aIniciarPesquisaId := lkpCategoria.KeyValue;
-
-    frmConsultaCategoria.ShowModal;
-
-    if frmConsultaCategoria.aRetornarIdSelecionado <> Unassigned then //Não atribuído
-      lkpCategoria.KeyValue := frmConsultaCategoria.aRetornarIdSelecionado;
-  finally
-    frmConsultaCategoria.Release;
-  end;
 end;
 
 procedure TfrmCadProduto.spbIncluirCategoriaClick(Sender: TObject);
@@ -148,7 +133,8 @@ begin
      edtProdutoId.Text      := IntToStr(oProduto.codigo);
      edtNome.Text           := oProduto.nome;
      edtDescricao.Text      := oProduto.descricao;
-     lkpCategoria.KeyValue  := oProduto.categoriaId;
+     edtSearchCategoriaId.Text  := IntToStr(oProduto.categoriaId);
+     GetDescricaoCategoria;
      edtValor.Value         := oProduto.valor;
      edtQuantidade.Value    := oProduto.quantidade;
      imgImagemProduto.Picture.Assign(oProduto.foto);
@@ -174,6 +160,16 @@ begin
   TFuncao.CarregarImagem(imgImagemProduto);
 end;
 
+procedure TfrmCadProduto.edtSearchCategoriaIdExit(Sender: TObject);
+begin
+  inherited;
+
+  if edtSearchCategoriaId.Text <> EmptyStr then
+    GetDescricaoCategoria
+  else
+    edtSearchCategoriaDescricao.Clear;
+end;
+
 procedure TfrmCadProduto.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   inherited;
@@ -194,6 +190,25 @@ procedure TfrmCadProduto.FormShow(Sender: TObject);
 begin
   inherited;
   QryCategoria.Open;
+end;
+
+procedure TfrmCadProduto.GetDescricaoCategoria;
+var
+  Qry: TZQuery;
+begin
+  Try
+    Qry := TZQuery.Create(nil);
+    Qry.Connection := dtmPrincipal.ConexaoDB;
+    Qry.SQL.Clear;
+    Qry.SQL.Add('SELECT * FROM CATEGORIAS WHERE CATEGORIAID = :CATEGORIAID');
+    Qry.ParamByName('CATEGORIAID').AsInteger := StrToInt(edtSearchCategoriaId.Text);
+    Qry.Open;
+
+    edtSearchCategoriaDescricao.Text := Qry.FieldByName('descricao').AsString;
+  Finally
+    if Assigned(Qry) then
+      FreeAndNil(Qry);
+  End;
 end;
 
 end.
