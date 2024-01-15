@@ -2,13 +2,15 @@ inherited frmCadCliente: TfrmCadCliente
   Caption = 'Cadastro de Cliente'
   ClientHeight = 499
   ClientWidth = 794
-  ExplicitWidth = 810
+  ExplicitWidth = 812
+  ExplicitHeight = 546
   TextHeight = 13
   inherited pgcPrincipal: TPageControl
     Width = 794
     Height = 451
     ActivePage = tabManutencao
     ExplicitWidth = 792
+    ExplicitHeight = 451
     inherited tabListagem: TTabSheet
       ExplicitWidth = 786
       ExplicitHeight = 423
@@ -254,6 +256,7 @@ inherited frmCadCliente: TfrmCadCliente
   inherited pnlRodape: TPanel
     Top = 451
     Width = 794
+    ExplicitTop = 451
     ExplicitWidth = 792
     inherited btnNovo: TBitBtn
       Left = 3

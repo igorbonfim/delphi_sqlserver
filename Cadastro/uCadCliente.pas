@@ -146,7 +146,7 @@ begin
     edtComplemento.Text   := ACBrCEP1.Enderecos[i].Complemento;
     edtBairro.Text        := ACBrCEP1.Enderecos[i].Bairro;
     edtCidade.Text        := ACBrCEP1.Enderecos[i].Municipio;
-    dbcEstado.Text        := ACBrCEP1.Enderecos[i].UF;
+    dbcEstado.ItemIndex   := dbcEstado.Items.IndexOf(ACBrCEP1.Enderecos[i].UF);
   end;
 end;
 
