@@ -7,7 +7,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, uTelaHeranca, Data.DB,
   ZAbstractRODataset, ZAbstractDataset, ZDataset, Vcl.DBCtrls, Vcl.Grids,
   Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask, Vcl.ExtCtrls, Vcl.ComCtrls,
-  RxToolEdit, cCadCliente, uEnum;
+  RxToolEdit, cCadCliente, uEnum, ACBrBase, ACBrSocket, ACBrCEP;
 
 type
   TfrmCadCliente = class(TfrmTelaHeranca)
@@ -37,10 +37,13 @@ type
     edtComplemento: TLabeledEdit;
     Label4: TLabel;
     dbcEstado: TDBComboBox;
+    btnPesquisarCEP: TButton;
+    ACBrCEP1: TACBrCEP;
     procedure FormCreate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure btnNovoClick(Sender: TObject);
     procedure btnAlterarClick(Sender: TObject);
+    procedure btnPesquisarCEPClick(Sender: TObject);
   private
     { Private declarations }
     oCliente:TCliente;
@@ -128,6 +131,23 @@ begin
   inherited;
   edtDataNascimento.Date := Date;
   edtNome.SetFocus;
+end;
+
+procedure TfrmCadCliente.btnPesquisarCEPClick(Sender: TObject);
+var
+  i: Integer;
+begin
+  inherited;
+
+  ACBrCEP1.BuscarPorCEP(edtCEP.Text);
+  for i := 0 to ACBrCEP1.Enderecos.Count - 1 do
+  begin
+    edtEndereco.Text      := ACBrCEP1.Enderecos[i].Logradouro;
+    edtComplemento.Text   := ACBrCEP1.Enderecos[i].Complemento;
+    edtBairro.Text        := ACBrCEP1.Enderecos[i].Bairro;
+    edtCidade.Text        := ACBrCEP1.Enderecos[i].Municipio;
+    dbcEstado.Text        := ACBrCEP1.Enderecos[i].UF;
+  end;
 end;
 
 procedure TfrmCadCliente.FormClose(Sender: TObject; var Action: TCloseAction);

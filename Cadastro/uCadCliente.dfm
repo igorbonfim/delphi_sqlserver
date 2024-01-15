@@ -1,21 +1,24 @@
 inherited frmCadCliente: TfrmCadCliente
   Caption = 'Cadastro de Cliente'
-  ClientWidth = 792
-  ExplicitWidth = 798
-  PixelsPerInch = 96
+  ClientHeight = 499
+  ClientWidth = 794
+  ExplicitWidth = 810
   TextHeight = 13
   inherited pgcPrincipal: TPageControl
-    Width = 792
+    Width = 794
+    Height = 451
     ActivePage = tabManutencao
     ExplicitWidth = 792
     inherited tabListagem: TTabSheet
-      ExplicitWidth = 784
+      ExplicitWidth = 786
+      ExplicitHeight = 423
       inherited pnlListagemTopo: TPanel
-        Width = 784
+        Width = 786
         ExplicitWidth = 784
       end
       inherited grdListagem: TDBGrid
-        Width = 784
+        Width = 786
+        Height = 366
         Columns = <
           item
             Expanded = False
@@ -40,7 +43,8 @@ inherited frmCadCliente: TfrmCadCliente
       end
     end
     inherited tabManutencao: TTabSheet
-      ExplicitWidth = 784
+      ExplicitWidth = 786
+      ExplicitHeight = 423
       object Label1: TLabel
         Left = 11
         Top = 104
@@ -50,21 +54,21 @@ inherited frmCadCliente: TfrmCadCliente
       end
       object Label2: TLabel
         Left = 139
-        Top = 261
+        Top = 315
         Width = 42
         Height = 13
         Caption = 'Telefone'
       end
       object Label3: TLabel
         Left = 11
-        Top = 261
+        Top = 315
         Width = 96
         Height = 13
         Caption = 'Data de Nascimento'
       end
       object Label4: TLabel
         Left = 504
-        Top = 205
+        Top = 259
         Width = 33
         Height = 13
         Caption = 'Estado'
@@ -81,6 +85,7 @@ inherited frmCadCliente: TfrmCadCliente
         MaxLength = 10
         NumbersOnly = True
         TabOrder = 0
+        Text = ''
       end
       object edtNome: TLabeledEdit
         Tag = 2
@@ -93,6 +98,7 @@ inherited frmCadCliente: TfrmCadCliente
         EditLabel.Caption = 'Nome'
         MaxLength = 60
         TabOrder = 1
+        Text = ''
       end
       object edtCEP: TMaskEdit
         Left = 11
@@ -105,46 +111,49 @@ inherited frmCadCliente: TfrmCadCliente
         Text = '  .   -   '
       end
       object edtEndereco: TLabeledEdit
-        Left = 90
-        Top = 118
+        Left = 11
+        Top = 174
         Width = 382
         Height = 21
         EditLabel.Width = 45
         EditLabel.Height = 13
         EditLabel.Caption = 'Endere'#231'o'
         MaxLength = 60
-        TabOrder = 4
+        TabOrder = 5
+        Text = ''
       end
       object edtBairro: TLabeledEdit
         Left = 334
-        Top = 219
+        Top = 273
         Width = 164
         Height = 21
         EditLabel.Width = 28
         EditLabel.Height = 13
         EditLabel.Caption = 'Bairro'
         MaxLength = 40
-        TabOrder = 8
+        TabOrder = 9
+        Text = ''
       end
       object edtCidade: TLabeledEdit
         Left = 11
-        Top = 219
+        Top = 273
         Width = 317
         Height = 21
         EditLabel.Width = 33
         EditLabel.Height = 13
         EditLabel.Caption = 'Cidade'
         MaxLength = 30
-        TabOrder = 7
+        TabOrder = 8
+        Text = ''
       end
       object edtTelefone: TMaskEdit
         Left = 139
-        Top = 277
+        Top = 331
         Width = 86
         Height = 21
         EditMask = '(99) 9999-9999;1;_'
         MaxLength = 14
-        TabOrder = 11
+        TabOrder = 12
         Text = '(  )     -    '
       end
       object edtEmail: TLabeledEdit
@@ -157,42 +166,45 @@ inherited frmCadCliente: TfrmCadCliente
         EditLabel.Caption = 'E-mail'
         MaxLength = 100
         TabOrder = 2
+        Text = ''
       end
       object edtDataNascimento: TDateEdit
         Left = 11
-        Top = 277
+        Top = 331
         Width = 121
         Height = 21
         DialogTitle = 'Selecione a Data'
         NumGlyphs = 2
         CalendarStyle = csDialog
-        TabOrder = 10
+        TabOrder = 11
       end
       object edtNumero: TLabeledEdit
-        Left = 478
-        Top = 118
+        Left = 399
+        Top = 174
         Width = 78
         Height = 21
         EditLabel.Width = 37
         EditLabel.Height = 13
         EditLabel.Caption = 'N'#250'mero'
         MaxLength = 10
-        TabOrder = 5
+        TabOrder = 6
+        Text = ''
       end
       object edtComplemento: TLabeledEdit
         Left = 11
-        Top = 165
+        Top = 219
         Width = 545
         Height = 21
         EditLabel.Width = 65
         EditLabel.Height = 13
         EditLabel.Caption = 'Complemento'
         MaxLength = 60
-        TabOrder = 6
+        TabOrder = 7
+        Text = ''
       end
       object dbcEstado: TDBComboBox
         Left = 504
-        Top = 219
+        Top = 273
         Width = 52
         Height = 21
         Style = csDropDownList
@@ -226,19 +238,29 @@ inherited frmCadCliente: TfrmCadCliente
           'SP'
           'SE'
           'TO')
-        TabOrder = 9
+        TabOrder = 10
+      end
+      object btnPesquisarCEP: TButton
+        Left = 85
+        Top = 116
+        Width = 172
+        Height = 25
+        Caption = 'Pesquisar CEP'
+        TabOrder = 4
+        OnClick = btnPesquisarCEPClick
       end
     end
   end
   inherited pnlRodape: TPanel
-    Width = 792
+    Top = 451
+    Width = 794
     ExplicitWidth = 792
     inherited btnNovo: TBitBtn
       Left = 3
       ExplicitLeft = 3
     end
     inherited btnFechar: TBitBtn
-      Left = 713
+      Left = 715
       ExplicitLeft = 713
     end
     inherited btnNavigator: TDBNavigator
@@ -301,5 +323,13 @@ inherited frmCadCliente: TfrmCadCliente
     object QryListagemdatanascimento: TDateTimeField
       FieldName = 'datanascimento'
     end
+  end
+  object ACBrCEP1: TACBrCEP
+    ProxyPort = '8080'
+    ParseText = True
+    WebService = wsViaCep
+    PesquisarIBGE = True
+    Left = 284
+    Top = 136
   end
 end
