@@ -1,6 +1,7 @@
 inherited frmProVenda: TfrmProVenda
   Caption = 'Vendas'
-  PixelsPerInch = 96
+  ExplicitWidth = 779
+  ExplicitHeight = 530
   TextHeight = 13
   inherited pgcPrincipal: TPageControl
     ActivePage = tabManutencao
