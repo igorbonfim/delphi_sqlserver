@@ -62,6 +62,7 @@ inherited frmProVenda: TfrmProVenda
         MaxLength = 10
         NumbersOnly = True
         TabOrder = 0
+        Text = ''
       end
       object lkpCliente: TDBLookupComboBox
         Left = 138
@@ -95,7 +96,7 @@ inherited frmProVenda: TfrmProVenda
           Width = 751
           Height = 41
           Align = alTop
-          TabOrder = 0
+          TabOrder = 2
           object Label1: TLabel
             Left = 3
             Top = -2
@@ -124,24 +125,13 @@ inherited frmProVenda: TfrmProVenda
             Height = 13
             Caption = 'Total do Produto'
           end
-          object lkpProduto: TDBLookupComboBox
-            Left = 3
-            Top = 14
-            Width = 247
-            Height = 21
-            KeyField = 'produtoId'
-            ListField = 'nome'
-            ListSource = dtmVenda.dtsProdutos
-            TabOrder = 0
-            OnExit = lkpProdutoExit
-          end
           object edtValorUnitario: TCurrencyEdit
             Left = 256
             Top = 14
             Width = 85
             Height = 21
             DisplayFormat = ' 0.00'
-            TabOrder = 1
+            TabOrder = 3
           end
           object edtQuantidade: TCurrencyEdit
             Left = 345
@@ -149,7 +139,7 @@ inherited frmProVenda: TfrmProVenda
             Width = 85
             Height = 21
             DisplayFormat = ' 0.00'
-            TabOrder = 2
+            TabOrder = 4
             OnEnter = edtQuantidadeEnter
             OnExit = edtQuantidadeExit
           end
@@ -162,7 +152,7 @@ inherited frmProVenda: TfrmProVenda
             DisplayFormat = ' 0.00'
             ParentColor = True
             ReadOnly = True
-            TabOrder = 3
+            TabOrder = 5
           end
           object btnAdicionarProduto: TBitBtn
             Left = 558
@@ -197,7 +187,7 @@ inherited frmProVenda: TfrmProVenda
               CF871DCF871DCE861DCC831CCC821CCA801BC87D1BC67A1AC47719C37419C172
               17BF6F17FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
               00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
-            TabOrder = 4
+            TabOrder = 6
             OnClick = btnAdicionarProdutoClick
           end
           object btnRemoverProduto: TBitBtn
@@ -233,8 +223,50 @@ inherited frmProVenda: TfrmProVenda
               FF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00
               FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF
               00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
-            TabOrder = 5
+            TabOrder = 7
             OnClick = btnRemoverProdutoClick
+          end
+          object SearchMore1: TSearchMore
+            Left = 56
+            Top = 12
+            Width = 25
+            Height = 25
+            Caption = '...'
+            TabOrder = 1
+            OnExit = edtSearchIdProdutoExit
+            PesquisaCaption = 'Consulta'
+            PesquisaWidth = 640
+            PesquisaHeight = 480
+            PesquisaTextHintMaskEdit = 'Digite a pesquisa'
+            PesquisaCaptionMaskEdit = 'Pesquisar por ...'
+            PesquisaCaptionBotaoIncluir = '&Incluir'
+            DataSource = dtmVenda.dtsProdutos
+            PesquisaIndexConsulta = 'produtoId'
+            PesquisaControlBookMark = False
+            PesquisaResultFieldKey = 'produtoId'
+            PesquisaResultDescription = 'nome'
+            PesquisaResultEditFieldKey = edtSearchIdProduto
+            PesquisaResultEditFieldDescription = edtSearchNomeProduto
+          end
+          object edtSearchIdProduto: TEditClickKey
+            Left = 3
+            Top = 14
+            Width = 54
+            Height = 21
+            NumbersOnly = True
+            TabOrder = 0
+            TextHint = 'F3'
+            OnExit = edtSearchIdProdutoExit
+            BitBtnClickKey = SearchMore1
+          end
+          object edtSearchNomeProduto: TEdit
+            Left = 81
+            Top = 14
+            Width = 174
+            Height = 21
+            Enabled = False
+            TabOrder = 2
+            OnExit = edtSearchIdProdutoExit
           end
         end
         object Panel3: TPanel
@@ -243,7 +275,7 @@ inherited frmProVenda: TfrmProVenda
           Width = 751
           Height = 41
           Align = alBottom
-          TabOrder = 1
+          TabOrder = 0
           object Label2: TLabel
             Left = 532
             Top = 13
@@ -279,7 +311,7 @@ inherited frmProVenda: TfrmProVenda
           Width = 751
           Height = 248
           Align = alClient
-          TabOrder = 2
+          TabOrder = 1
           object dgGridItensVenda: TDBGrid
             Left = 1
             Top = 1

@@ -78,6 +78,7 @@ inherited frmCadProduto: TfrmCadProduto
         MaxLength = 10
         NumbersOnly = True
         TabOrder = 0
+        Text = ''
       end
       object edtNome: TLabeledEdit
         Tag = 2
@@ -90,6 +91,7 @@ inherited frmCadProduto: TfrmCadProduto
         EditLabel.Caption = 'Nome'
         MaxLength = 60
         TabOrder = 1
+        Text = ''
       end
       object edtDescricao: TMemo
         Left = 11
@@ -142,6 +144,7 @@ inherited frmCadProduto: TfrmCadProduto
         Top = 78
         Width = 64
         Height = 21
+        NumbersOnly = True
         TabOrder = 6
         OnExit = edtSearchCategoriaIdExit
         BitBtnClickKey = SearchMore1
@@ -174,6 +177,7 @@ inherited frmCadProduto: TfrmCadProduto
         Height = 21
         Enabled = False
         TabOrder = 8
+        Text = 'SearchMore1'
       end
     end
   end
